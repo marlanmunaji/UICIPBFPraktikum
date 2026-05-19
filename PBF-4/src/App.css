@@ -1,5 +1,5 @@
-main {
-  text-align: center;
-  vertical-align: center;
+main { /* <main> adalah tag HTML untuk bagian utama halaman */
+  text-align: center; /* Mengatur teks agar rata tengah secara horizontal */
+  vertical-align: center; /* Mengatur konten agar posisinya di tengah secara vertikal */
 
 }
