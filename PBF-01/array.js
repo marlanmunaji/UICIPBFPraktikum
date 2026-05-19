@@ -1,2 +1,2 @@
-var products = ["Flashdisk", "SDD", "Monitor"];
-document.getElementById("demo").innerHTML = products[0];
+var products = ["Flashdisk", "SDD", "Monitor"]; // membuat array bernama products yang berisi daftar produk
+document.getElementById("demo").innerHTML = products[0]; // mengambil elemen HTML dengan id "demo", lalu mengisi isinya (innerHTML) dengan data pertama dari array products (index ke-0 = "Flashdisk")
