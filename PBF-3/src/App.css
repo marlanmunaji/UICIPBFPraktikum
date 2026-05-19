@@ -1,11 +1,19 @@
+/* main - selector untuk elemen <main> */
 main {
+  /* Mengatur perataan teks menjadi di tengah (horizontal) */
   text-align: center;
+  /* Mengatur perataan konten secara vertikal menjadi di tengah */
   vertical-align: center;
 }
 
+/* header - selector untuk elemen <header> */
 header {
+  /* Mengatur warna latar belakang menjadi blueviolet */
   background-color: blueviolet;
+  /* Mengatur warna teks menjadi putih */
   color: white;
+  /* Memberikan jarak (padding) sebesar 10px di semua sisi */
   padding: 10px;
+  /* Mengatur jenis huruf (font) menjadi Lato, dengan fallback sans-serif */
   font-family: Lato, sans-serif;
 }
