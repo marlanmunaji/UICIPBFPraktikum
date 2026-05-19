@@ -1,30 +1,45 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html> <!-- Menentukan bahwa dokumen ini adalah HTML5 -->
+<html> <!-- Tag pembuka HTML -->
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Hello World</title>
+<head> <!-- Bagian head untuk metadata dan resource -->
+  <meta charset="UTF-8" /> <!-- Mengatur encoding karakter menjadi UTF-8 -->
+  <title>Hello World</title> <!-- Judul halaman yang tampil di tab browser -->
+
+  <!-- Memuat library React versi development -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+  <!-- Memuat React DOM untuk render ke browser -->
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-  <!-- Don't use this in production: -->
+  <!-- Babel untuk mengubah JSX menjadi JavaScript biasa (hanya untuk development) -->
+  <!-- Jangan dipakai di production karena berat -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 
-<body>
-  <div id="root"></div>
+<body> <!-- Bagian isi halaman -->
+  <div id="root"></div> <!-- Elemen target tempat React akan dirender -->
+
+  <!-- Script React dengan JSX, harus pakai type="text/babel" -->
   <script type="text/babel">
 
+    // Membuat komponen React bernama MyApp
     function MyApp() {
-      return <h1>Hello, world!</h1>;
+      return <h1>Hello, world!</h1>; // Mengembalikan elemen JSX (heading)
     }
 
+    // Mengambil elemen dengan id 'root' dari HTML
     const container = document.getElementById('root');
+
+    // Membuat root React menggunakan React 18 API
     const root = ReactDOM.createRoot(container);
+
+    // Render komponen MyApp ke dalam root
     root.render(<MyApp />);
 
   </script>
-  <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script>
-</body>
 
+  <!-- Script tambahan dari Replit untuk badge (opsional) -->
+  <script src="https://replit.com/public/js/replit-badge.js" theme="blue" defer></script>
+
+</body>
 </html>
