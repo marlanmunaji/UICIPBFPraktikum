@@ -1,3 +1,4 @@
+/* Mengatur tampilan utama (main) agar konten berada di tengah */
 main {
   text-align: center;
   vertical-align: center;
@@ -7,15 +8,17 @@ main {
   flex-basis: auto;
 }
 
+/* Mengatur semua elemen agar ukuran termasuk padding dan border */
 * {
   box-sizing: border-box;
 }
 
+/* Mengatur font utama halaman */
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Float four columns side by side */
+/* Membuat 4 kolom sejajar (float) */
 .column {
   float: left;
   width: 25%;
@@ -23,28 +26,28 @@ body {
   margin-bottom: 30px;
 }
 
-/* Remove extra left and right margins, due to padding */
+/* Menghilangkan margin kiri/kanan berlebih karena padding */
 .row {margin: 0 -5px;}
 
-/* Clear floats after the columns */
+/* Membersihkan float setelah baris kolom */
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* Responsive columns */
+/* Tampilan responsive untuk layar kecil (HP) */
 @media screen and (max-width: 600px) {
   .column {
-    width: 100%;
+    width: 100%;         /* Kolom menjadi satu baris penuh */
     display: flex;
     margin-bottom: 20px;
   }
 }
 
-/* Style the counter cards */
+/* Gaya untuk kartu (card) foto */
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);  /* Efek bayangan */
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
