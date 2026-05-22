@@ -1,8 +1,9 @@
+/* Elemen <main> sebagai container utama halaman */
 main {
-  text-align: center;
-  vertical-align: center;
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-  flex-basis: auto;
+  text-align: center;          /* Teks rata tengah */
+  vertical-align: center;      /* Posisi vertikal di tengah */
+  display: flex;               /* Menggunakan Flexbox untuk tata letak */
+  flex-direction: column;      /* Anak elemen disusun secara vertikal (ke bawah) */
+  margin-top: 30px;            /* Jarak atas dari elemen sebelumnya */
+  flex-basis: auto;            /* Ukuran dasar flex mengikuti konten */
 }
