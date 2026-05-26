@@ -1,65 +1,67 @@
 // PBF-03/04: Halaman Kontak
 // PBF-07: React Hooks (useState) untuk form
 // PBF-01: Destructuring, Spread Operator, Array.map(), Arrow Function
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // Mengimpor React dan hook useState
 import {
   Box, Container, Typography, TextField, Button, Card, CardContent, Alert, Snackbar
-} from '@mui/material';
-import SendIcon from '@mui/icons-material/Send';
-import EmailIcon from '@mui/icons-material/Email';
-import PersonIcon from '@mui/icons-material/Person';
-import MessageIcon from '@mui/icons-material/Message';
+} from '@mui/material'; // Mengimpor komponen Material UI
+import SendIcon from '@mui/icons-material/Send'; // Ikon kirim
+import EmailIcon from '@mui/icons-material/Email'; // Ikon email
+import PersonIcon from '@mui/icons-material/Person'; // Ikon orang
+import MessageIcon from '@mui/icons-material/Message'; // Ikon pesan
 
-// PBF-01: Interface untuk tipe data pesan (mirip Class di PBF-01)
+// PBF-01: Interface untuk menentukan struktur data pesan (mirip Class di PBF-01)
 interface Pesan {
-  id: number;
-  nama: string;
-  email: string;
-  isi: string;
+  id: number; // ID unik pesan
+  nama: string; // Nama pengirim
+  email: string; // Email pengirim
+  isi: string; // Isi pesan
 }
 
+// Komponen halaman Kontak menggunakan arrow function
 const Kontak = () => {
-  // PBF-07: useState untuk form
-  const [nama, setNama] = useState('');
-  const [email, setEmail] = useState('');
-  const [pesan, setPesan] = useState('');
-  const [terkirim, setTerkirim] = useState(false);
-  const [open, setOpen] = useState(false);
+  // PBF-07: useState untuk menyimpan nilai input form
+  const [nama, setNama] = useState(''); // State untuk input nama, awalnya string kosong
+  const [email, setEmail] = useState(''); // State untuk input email
+  const [pesan, setPesan] = useState(''); // State untuk input pesan
+  const [terkirim, setTerkirim] = useState(false); // State untuk status terkirim
+  const [open, setOpen] = useState(false); // State untuk membuka/tutup notifikasi Snackbar
 
-  // PBF-07: useState untuk menyimpan daftar pesan yang dikirim
-  // PBF-01: Array kosong sebagai initial state
+  // PBF-07: useState untuk menyimpan daftar pesan yang sudah dikirim
+  // PBF-01: Array kosong sebagai initial state (tipe data array of Pesan)
   const [daftarPesan, setDaftarPesan] = useState<Pesan[]>([]);
 
-  // PBF-01: Arrow function untuk handle submit
+  // PBF-01: Arrow function untuk menangani submit form
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault(); // Mencegah reload halaman saat submit form
 
-    if (nama && email && pesan) {
-      // PBF-01: Membuat objek pesan baru
+    if (nama && email && pesan) { // Jika semua field sudah diisi
+      // PBF-01: Membuat objek pesan baru berdasarkan interface Pesan
       const pesanBaru: Pesan = {
-        id: Date.now(), // ID unik berdasarkan waktu
+        id: Date.now(), // ID unik berdasarkan timestamp (waktu saat ini)
         nama: nama,
         email: email,
         isi: pesan,
       };
 
-      // PBF-01: Spread operator untuk menambah pesan baru ke array
-      setDaftarPesan([...daftarPesan, pesanBaru]);
+      // PBF-01: Spread operator (...) untuk menyalin array lama dan menambah pesan baru
+      setDaftarPesan([...daftarPesan, pesanBaru]); // Tambah pesan baru ke daftar
 
-      // Tampilkan notifikasi
+      // Tampilkan notifikasi sukses
       setTerkirim(true);
       setOpen(true);
 
-      // PBF-01: Reset form
+      // PBF-01: Reset form (kembalikan state ke string kosong)
       setNama('');
       setEmail('');
       setPesan('');
-      setTimeout(() => setTerkirim(false), 3000);
+      setTimeout(() => setTerkirim(false), 3000); // Setelah 3 detik, ubah status terkirim jadi false
     }
   };
 
   return (
     <Box>
+      {/* Bagian header halaman Kontak */}
       <Box sx={{ bgcolor: '#00695c', color: 'white', py: 6, textAlign: 'center' }}>
         <Container>
           <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold' }}>
@@ -80,6 +82,7 @@ const Kontak = () => {
             </Typography>
 
             <Box component="form" onSubmit={handleSubmit}>
+              {/* Field input nama */}
               <TextField
                 fullWidth
                 label="Nama"
@@ -88,6 +91,7 @@ const Kontak = () => {
                 sx={{ mb: 2 }}
                 required
               />
+              {/* Field input email */}
               <TextField
                 fullWidth
                 label="Email"
@@ -97,6 +101,7 @@ const Kontak = () => {
                 sx={{ mb: 2 }}
                 required
               />
+              {/* Field input pesan (textarea) */}
               <TextField
                 fullWidth
                 label="Pesan"
@@ -107,6 +112,7 @@ const Kontak = () => {
                 sx={{ mb: 2 }}
                 required
               />
+              {/* Tombol kirim */}
               <Button
                 type="submit"
                 variant="contained"
@@ -128,12 +134,13 @@ const Kontak = () => {
               Pesan yang Dikirim
             </Typography>
 
+            {/* Jika belum ada pesan, tampilkan teks kosong */}
             {daftarPesan.length === 0 ? (
               <Typography variant="body2" color="text.secondary">
                 Belum ada pesan yang dikirim. Coba kirim pesan di form atas!
               </Typography>
             ) : (
-              // PBF-01: Array.map() untuk menampilkan daftar pesan
+              /* PBF-01: Array.map() untuk menampilkan setiap pesan dalam daftar */
               daftarPesan.map((item) => (
                 <Card key={item.id} variant="outlined" sx={{ mb: 2, p: 2 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
@@ -163,7 +170,7 @@ const Kontak = () => {
         {/* Info kontak */}
         <Box sx={{ mt: 4, textAlign: 'center' }}>
           <Typography variant="body1">
-            Email: marlan@example.com
+            Email: marlanmunaji@gmail.com
           </Typography>
           <Typography variant="body1">
             GitHub: github.com/marlanmunaji
@@ -171,9 +178,9 @@ const Kontak = () => {
         </Box>
       </Container>
 
-      {/* Notifikasi sukses */}
+      {/* Notifikasi sukses (Snackbar) */}
       <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
-        <Alert severity="success" onClose={() => setOpen(false)}>
+        <Alert onClose={() => setOpen(false)} severity="success">
           Pesan berhasil dikirim!
         </Alert>
       </Snackbar>
